@@ -20,28 +20,28 @@ def get_filters():
     # used lower() and strip() functions to handle invalid inputs
 
     city = input('\nEnter name of the city to analyze from Chicago, New York City or Washington : ').lower().strip()
-    
+
     while city not in CITY_DATA.keys():
         print('\nYou entered an invalid city name: {} '.format(city))
         city = input('\nEnter name of the city to analyze from Chicago, New York City or Washington : ').lower().strip()
-        
+
     # TO DO: get user input for month (all, january, february, ... , june)
     month = input('\nEnter name of the month to filter by from January to June, or "all" to apply no month filter: ').lower().strip()
-    
+
     months_check_list = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
     while month not in months_check_list:
         print('\nYou entered an invalid month: {} '.format(month))
         month = input('\nEnter name of the month to filter by from January to June, or "all" to apply no month filter: ').lower().strip()
-        
+
 
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     day = input('\nEnter day of week like 1-Monday, 2-Tuesday, 0-Sunday or "all" to apply no day filter : ').strip()
-    
+
     days_check_list = ['0','1','2','3','4','5','6','all']
     while day not in days_check_list:
         print('\nYou entered the day in wrong format')
         day = input('\nEnter day of week like 1-Monday, 2-Tuesday, 0-Sunday or "all" to apply no day filter : ').strip()
-        
+
 
     print('-'*40)
     return city, month, day
@@ -118,24 +118,24 @@ def station_stats(df):
     start_time = time.time()
 
     # TO DO: display most commonly used start station
-    
+
     most_used_start_stn = df['Start Station'].mode()[0]
     print('\n Most commonly used start station: {}'.format(most_used_start_stn))
 
 
     # TO DO: display most commonly used end station
-    
+
     most_used_end_stn = df['End Station'].mode()[0]
     print('\n Most commonly used end station: {}'.format(most_used_end_stn))
 
 
     # TO DO: display most frequent combination of start station and end station trip
-    
+
     # adding start and end station concatenated column to the data frame.
     df['start_end_station'] = df['Start Station']+'---'+df['End Station']
-    
+
     most_used_start_end_stn = df['start_end_station'].mode()[0]
-    
+
     print('\n Most commonly used start and end station: {}'.format(most_used_start_end_stn))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -149,16 +149,16 @@ def trip_duration_stats(df):
     start_time = time.time()
 
     # TO DO: display total travel time
-    
+
     total_travel_time = df['Trip Duration'].sum()/3600
-    
+
     print('\n Total travel time in hours: {}'.format(total_travel_time))
 
 
     # TO DO: display mean travel time
-    
+
     mean_travel_time = df['Trip Duration'].mean()/3600
-    
+
     print('\n Mean travel time in hours: {}'.format(mean_travel_time))
 
 
@@ -174,7 +174,7 @@ def user_stats(df):
 
     # TO DO: Display counts of user types
     counts_of_user_types = dict(df['User Type'].value_counts())
-    
+
     print('\n Displaying the counts of user types:\n {}'.format(counts_of_user_types))
 
     # TO DO: Display counts of gender
@@ -190,7 +190,7 @@ def user_stats(df):
         earliest_yob = int(df['Birth Year'].min())
         most_recent_yob = int(df['Birth Year'].max())
         most_common_yob = int(df['Birth Year'].mode()[0])
-    
+
         print('\n Earliest year of birth: {}\n Most recent year of birth: {}\n Most common year of birth: {}'.format(earliest_yob,most_recent_yob,most_common_yob))
     else:
         print('\n No Birth Year information available')
@@ -198,7 +198,7 @@ def user_stats(df):
         print("\nThis took %s seconds." % (time.time() - start_time))
 
         print('-'*40)
-        
+
 def display_raw_data(df):
     """
     Asks user if they want to see 5 lines of raw data.
@@ -207,7 +207,7 @@ def display_raw_data(df):
     """
     data = 0
     while True:
-        answer = input('Would you like to see 5 lines of raw data? Enter yes or no: ')
+        answer = input('Would you like to see 5 rows of raw data? Enter yes or no: ')
         if answer.lower() == 'yes':
             print(df[data : data+5])
             data += 5
