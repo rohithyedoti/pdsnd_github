@@ -7,6 +7,7 @@ Udacity-Git-Project
 Replace the Project Title
 
 ### Description
+Learning abiut GIT and how to use GIT version both locally and remote
 Describe what your project is about and what it does
 
 ### Files used
