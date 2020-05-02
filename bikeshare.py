@@ -136,7 +136,7 @@ def station_stats(df):
 
     most_used_start_end_stn = df['start_end_station'].mode()[0]
 
-    print('\n Most commonly used start and end station: {}'.format(most_used_start_end_stn))
+    print('\n Most commonly used start and end station are: {}'.format(most_used_start_end_stn))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
